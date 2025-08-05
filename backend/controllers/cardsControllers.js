@@ -44,6 +44,11 @@ export async function getCardById(req, res) {
     if (!card) return res.status(404).json({ message: "Card not found!" });
 
     delete card.sdk;
+    card.image += "/high.jpg";
+
+    if (card.set.symbol.charAt(card.set.symbol.length - 4) != '.')
+        card.set.symbol += ".jpg";
+
     // console.log(card.name);
     res.json(card);
 }
