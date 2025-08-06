@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import cardsRoutes from "./routes/cardsRoutes.js";
+import searchRoutes from "./routes/searchRoutes.js";
 
 dotenv.config();
 
@@ -23,3 +24,4 @@ app.listen(process.env.SERVER_PORT, () => {
 });
 
 app.use("/api/cards", cardsRoutes);
+app.use("/api/search", searchRoutes);
