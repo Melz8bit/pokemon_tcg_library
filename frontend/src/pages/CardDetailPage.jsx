@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router";
 import api from "../lib/axios";
 import { ArrowLeftIcon, Columns3, LoaderIcon, Trash2Icon } from "lucide-react";
+import Navbar from "../components/navbar";
 
 const CardDetailPage = () => {
     const [card, setCard] = useState(null);
@@ -30,7 +31,7 @@ const CardDetailPage = () => {
         fetchCard();
     }, [id]);
 
-    console.log(id);
+    // console.log(id);
 
 
     if (loading) {
@@ -52,69 +53,70 @@ const CardDetailPage = () => {
 
     return (
         <div className="bg-base-200 justify-start md:justify-center">
+            <Navbar />
             <div className="container border mx-auto px-4 py-8">
-                <h1 class="text-4xl mb-2">{card.name}</h1>
-                <div class="columns-2xs">
-                    <div class="items-center">
-                        <img class="rounded-xl" src={card.image} alt={card.name} width="300" />
+                <h1 className="text-4xl mb-2">{card.name}</h1>
+                <div className="columns-2xs">
+                    <div className="items-center">
+                        <img className="rounded-xl" src={card.image} alt={card.name} width="300" />
                     </div>
-                    <div class="w-xl">
-                        <div class="input-group-div">
-                            <span class="input-group-span">
+                    <div className="w-xl">
+                        <div className="input-group-div">
+                            <span className="input-group-span">
                                 Set Name
                             </span>
-                            <label type="text" class="input-group-input">
-                                <div class="flex justify-evenly">
-                                    <label class="content-center">{card.set.name}</label>
-                                    <img src={card.set.symbol} alt={card.name} class="ml-2 items-end md:block hidden" />
+                            <label type="text" className="input-group-input">
+                                <div className="flex justify-evenly">
+                                    <label className="content-center">{card.set.name}</label>
+                                    <img src={card.set.symbol} alt={card.name} className="ml-2 items-end md:block hidden" />
                                 </div>
                             </label>
                         </div>
-                        <div class="input-group-div">
-                            <span class="input-group-span">
+                        <div className="input-group-div">
+                            <span className="input-group-span">
                                 Card Count
                             </span>
-                            <label type="text" class="input-group-input">
+                            <label type="text" className="input-group-input">
                                 {card.localId} / {card.set.cardCount.total}
                             </label>
                         </div>
-                        <div class="input-group-div">
-                            <span class="input-group-span">
+                        <div className="input-group-div">
+                            <span className="input-group-span">
                                 First Edition
                             </span>
-                            <label type="text" class="input-group-input">
+                            <label type="text" className="input-group-input">
                                 {card.variants.firstEdition ? "Yes" : "No"}
                             </label>
                         </div>
-                        <div class="input-group-div">
-                            <span class="input-group-span">
+                        <div className="input-group-div">
+                            <span className="input-group-span">
                                 Normal
                             </span>
-                            <label type="text" class="input-group-input">
+                            <label type="text" className="input-group-input">
                                 {card.variants.normal ? "Yes" : "No"}
                             </label>
                         </div>
-                        <div class="input-group-div">
-                            <span class="input-group-span">
+                        <div className="input-group-div">
+                            <span className="input-group-span">
                                 Holographic
                             </span>
-                            <label type="text" class="input-group-input">
+                            <label type="text" className="input-group-input">
                                 {card.variants.holo ? "Yes" : "No"}
                             </label>
                         </div>
-                        <div class="input-group-div">
-                            <span class="input-group-span">
+                        <div className="input-group-div">
+                            <span className="input-group-span">
                                 Reverse Holo
                             </span>
-                            <label type="text" class="input-group-input">
+                            <label type="text" className="input-group-input">
                                 {card.variants.reverse ? "Yes" : "No"}
                             </label>
                         </div>
-                        <div class="input-group-div">
-                            <span class="input-group-span">
+                        <div className="input-group-div">
+                            <span className="input-group-span">
                                 Promo
                             </span>
-                            <label type="text" class="input-group-input">
+                            <label type="text" className="input-group-input">
                                 {card.variants.wPromo ? "Yes" : "No"}
                             </label>
                         </div>
