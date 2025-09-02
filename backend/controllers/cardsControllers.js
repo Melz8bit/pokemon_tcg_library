@@ -39,7 +39,6 @@ export async function getCardById(req, res) {
     //     console.error("Error in getCardById controller");
     //     res.status(500).json({ message: "Internal server error" });
     // }
-
     const card = await tcgdex.card.get(req.params.id);
     if (!card) return res.status(404).json({ message: "Card not found!" });
 
@@ -52,3 +51,4 @@ export async function getCardById(req, res) {
     // console.log(card.name);
     res.json(card);
 }
+

@@ -31,9 +31,6 @@ const CardDetailPage = () => {
         fetchCard();
     }, [id]);
 
-    // console.log(id);
-
-
     if (loading) {
         return (
             <div className="min-h-screen bg-base-200 flex items-center justify-center">

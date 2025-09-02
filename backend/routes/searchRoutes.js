@@ -6,7 +6,6 @@ import {
 const router = express.Router();
 
 router.get("/:cardName", searchCards);
-// router.get("/:id", getCardById);
 // router.post("/", createNote);
 // router.put("/:id", updateNote);
 // router.delete("/:id", deleteNote);

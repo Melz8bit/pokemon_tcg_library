@@ -1,4 +1,5 @@
 import Navbar from "../components/navbar";
+import SearchResultCard from "../components/SearchResultCard";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { LoaderIcon } from "lucide-react";
@@ -53,7 +54,7 @@ const SearchResultsPage = () => {
         <div className="bg-base-200 justify-start md:justify-center">
             <Navbar />
             <div className="container border mx-auto px-4 py-8">
-                <div>{results.map(result => <img src={`${result.image}/low.jpg`} />)}</div>
+                <div>{results.map(result => <SearchResultCard key={result.id} card={result} />)}</div>
             </div>
         </div>
     )

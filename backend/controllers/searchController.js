@@ -3,13 +3,24 @@ import TCGdex, { Query } from '@tcgdex/sdk'
 const tcgdex = new TCGdex('en');
 
 export async function searchCards(req, res) {
-    // console.log("search name: " + req.params.cardName);
-    // filter, sort & paginate the result (ex: find card where name is equal to furret)
     const cards = await tcgdex.card.list(new Query().like('name', req.params.cardName));
 
-    cards.forEach(card => {
+    // Create an array of promises for each card
+    const cardPromises = cards.map(async card => {
+        // Fetch the full details for the card
+        const card_detail = await tcgdex.card.get(card.id);
+
+        // Add the set name to the card object
+        card.setName = card_detail.set.name;
+
+        // Clean up the sdk property and return the modified card
         delete card.sdk;
+        return card;
     });
 
-    res.json(cards);
+    // Wait for all promises to resolve
+    const detailedCards = await Promise.all(cardPromises);
+
+    // Send the response with the fully detailed cards
+    res.json(detailedCards);
 }
