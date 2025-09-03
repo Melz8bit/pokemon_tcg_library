@@ -13,6 +13,10 @@ export async function searchCards(req, res) {
         // Add the set name to the card object
         card.setName = card_detail.set.name;
 
+        if (card.image) {
+            card.image += "/low.jpg";
+        }
+
         // Clean up the sdk property and return the modified card
         delete card.sdk;
         return card;

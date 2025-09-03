@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router";
 import api from "../lib/axios";
 import { ArrowLeftIcon, Columns3, LoaderIcon, Trash2Icon } from "lucide-react";
 import Navbar from "../components/navbar";
+import noImage from "../assets/no-image-high.png";
 
 const CardDetailPage = () => {
     const [card, setCard] = useState(null);
@@ -55,7 +56,7 @@ const CardDetailPage = () => {
                 <h1 className="text-4xl mb-2">{card.name}</h1>
                 <div className="columns-2xs">
                     <div className="items-center">
-                        <img className="rounded-xl" src={card.image} alt={card.name} width="300" />
+                        <img className="rounded-xl" src={card.image || noImage} alt={card.name} width="300" height="413" />
                     </div>
                     <div className="w-xl">
                         <div className="input-group-div">
@@ -65,7 +66,9 @@ const CardDetailPage = () => {
                             <label type="text" className="input-group-input">
                                 <div className="flex justify-evenly">
                                     <label className="content-center">{card.set.name}</label>
-                                    <img src={card.set.symbol} alt={card.name} className="ml-2 items-end md:block hidden" />
+                                    {card.set.symbol && (
+                                        <img src={card.set.symbol} alt={card.name} className="ml-2 items-end md:block hidden" width="31" height="31" />
+                                    )}
                                 </div>
                             </label>
                         </div>

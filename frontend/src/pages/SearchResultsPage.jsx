@@ -1,10 +1,9 @@
 import Navbar from "../components/navbar";
 import SearchResultCard from "../components/SearchResultCard";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import { LoaderIcon } from "lucide-react";
 import api from "../lib/axios";
-
 
 const SearchResultsPage = () => {
     const [results, setResult] = useState(null);
@@ -54,7 +53,13 @@ const SearchResultsPage = () => {
         <div className="bg-base-200 justify-start md:justify-center">
             <Navbar />
             <div className="container border mx-auto px-4 py-8">
-                <div>{results.map(result => <SearchResultCard key={result.id} card={result} />)}</div>
+                <div>
+                    {results.map(result =>
+                        <Link to={`/card/${result.id}`} params={{ id: result.id }} >
+                            <SearchResultCard key={result.id} card={result} />
+                        </Link>
+                    )}
+                </div>
             </div>
         </div>
     )
